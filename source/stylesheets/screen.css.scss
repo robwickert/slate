@@ -102,7 +102,7 @@ html, body {
   }
 
   .logo {
-    margin-bottom: $logo-margin;
+    margin: $logo-top-margin $logo-right-margin $logo-bottom-margin $logo-left-margin;
   }
 
   .search-results {

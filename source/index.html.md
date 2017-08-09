@@ -1,239 +1,929 @@
----
-title: API Reference
+--- 
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: Marin API 
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+language_tabs: 
+   - shell: cURL
+   - http: HTTP
 
-includes:
-  - errors
+toc_footers: 
+   - <a href='#'>Sign Up for a Developer Key</a> 
+   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
-search: true
----
+includes: 
+   - errors 
 
-# Introduction
+search: true 
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+--- 
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Introduction 
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The Marin API is a REST API that provides users the means to programmatically retrieve and update their Marin data. The document will provide you with everything you need to get started using the API.
 
-# Authentication
+## Versioning
 
-> To authorize, use this code:
+The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one version is available:
 
-```ruby
-require 'kittn'
+| Version | Comments |
+| ------- | -------- |
+| v1.0 | Initial Version of the Marin API |
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+The version number is specified after the base URL:
 
-```python
-import kittn
+`GET http://api.marinsoftware.com/v1.0/clients`
 
-api = kittn.authorize('meowmeowmeow')
-```
+
+# Authentication 
+
+All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the auth endpoint with your username and password that you will use to access the API.
+
+## Get Authentication Token
+
+Authenticate the users and returns a token
+
+### HTTP Request 
+`POST /v1.0/auth` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Clients
+## Get All Clients
+
+Returns Clients
+
+### HTTP Request 
+`GET /v1.0/clients` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| id | query | Please provide the Id | No | string |
+| status | query | Please provide the  status | No | string |
+| currency | query | Please provide the  currency | No | string |
+| legacyId | query | Please provide the  legacyId | No | string |
+| name | query | Please provide the  name | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+
+## Get a single client
+
+Returns client with client ID
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get all users for a client
+
+Get Users under a client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Create a client
+
+Creates Client
+
+### HTTP Request 
+`POST /v1.0/clients` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Edit a client
+
+Update client with clientId
+
+### HTTP Request 
+`PUT /v1.0/clients/{clientId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Please provide the  clientId to be updated | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Delete a client
+
+Delete Client with clientId
+
+### HTTP Request 
+`DELETE /v1.0/clients/{clientId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the Id | Yes | string |
+| clientId | path | Please provide the  clientId to be updated | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+# Customers
+## Get all customers
+
+Returns Customers
+
+### HTTP Request 
+`GET /v1.0/customers` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| id | query | Please provide the Id | No | string |
+| status | query | Please provide the  status | No | string |
+| legacyId | query | Please provide the  legacyId | No | string |
+| name | query | Please provide the  name | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single customer
+
+Returns Customer with CustomerId
+
+### HTTP Request 
+`GET /v1.0/customers/{customerId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| customerId | path | Customer ID | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Create a customer
+
+Create Customer
+
+### HTTP Request 
+`POST /v1.0/customers` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Edit a customer
+
+Update customer
+
+### HTTP Request 
+`PUT /v1.0/customers/{customerId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| customerId | path | Please provide the  customerId to be updated | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Delete a customer
+
+Deletes customers
+
+### HTTP Request 
+`DELETE /v1.0/customers/{customerId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| customerId | path | Please provide the customer Id to be deleted | Yes | number |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Publisher Accounts
+
+
+## Get all publisher accounts
+
+Returns all Publisher Accounts under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/publisherAccounts` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single publisher account
+
+Returns Publisher Account under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/publisherAccounts/{pubAccountId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+| pubAccountId | path | Publisher Accounts ID | Yes | string |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Campaigns
+
+## Get all campaigns
+
+Returns all Campaigns under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/campaigns` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single campaign
+
+Returns a Campaign under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/campaigns/{campaignId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | string |
+| campaignId | path | Campaign ID | Yes | string |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Groups
+
+## Get all groups
+
+Returns all Groups under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/groups` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single group
+
+Returns a Group under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/groups/{groupId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| groupId | path | Group ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Keywords
+
+## Get all keywords
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -X GET \
+  "http://api.marinsoftware.com/v1.0/clients/1808782/keywords"
+  -H 'token: st_cfc8909710f0d020f95dcec821fad453a248ebc7a7f9438f'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+```http
+GET /v1.0/clients/1808782/keywords HTTP/1.1
+Host: api.marinsoftware.com
+token: st_cfc8909710f0d020f95dcec821fad453a248ebc7a7f9438f
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "publisher_name": "MSN",
+  "min_cpc": 0,
+  "impressions": 250,
+  "type": "BROAD",
+  "max_cpc": 3000000,
+  "pub_cost": 23040000,
+  "pca": 1591619,
+  "campaign_name": "Powpow-AU-[Looker]-{Dates}-Year",
+  "pub_clicks": 10,
+  "pca_alias": "Powpow-Bing-SEM",
+  "campaign": 4779468,
+  "client": 1808782,
+  "keyword": 10387398,
+  "keyword_name": "+cruises +2017",
+  "recommended_bid": 0,
+  "group": 27052373,
+  "customer": 1904153,
+  "status": "ACTIVE"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Returns all Keywords under Client
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/keywords` 
 
-### HTTP Request
+**Parameters**
 
-`GET http://example.com/kittens/<ID>`
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
 
-### URL Parameters
+**Responses**
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
 
-## Delete a Specific Kitten
+## Get a single keyword
 
-```ruby
-require 'kittn'
+Returns a Keyword under a Client
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/keywords/{keywordId}` 
 
-```python
-import kittn
+**Parameters**
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| keywordId | path | Keyword ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+**Responses**
 
-```javascript
-const kittn = require('kittn');
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
 
-> The above command returns JSON structured like this:
+# Creatives
 
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
+## Get all creatives
 
-This endpoint retrieves a specific kitten.
+Returns all Creatives under a Client
 
-### HTTP Request
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/creatives` 
 
-`DELETE http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+**Responses**
 
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single creative
+
+Returns a Creative under a Client
+
+### HTTP Request 
+`GET /v1.0/clients/{clientId}/creatives/{creativeId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | path | Client ID | Yes | number |
+| creativeId | path | Creative ID | Yes | number |
+| limit | query | limit docs | Yes | number |
+| offset | query | starting value | Yes | number |
+| fields | query | comma seperated field names which needs to be shown | No | string |
+| from | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| to | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Users
+## Get all users
+
+Returns Users under a Client
+
+### HTTP Request 
+`GET /v1.0/users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | query | Please provide the respective client Id | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Create a user
+
+Create Users
+
+### HTTP Request 
+`POST /v1.0/users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| customerId | query | Please provide the customer Id for authorization | Yes | string |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Delete a user
+
+Delete Users
+
+### HTTP Request 
+`DELETE /v1.0/users` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Jobs
+## Get all jobs 
+
+Returns jobs
+
+### HTTP Request 
+`GET /v1.0/jobs` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| clientId | query | Please provide the respective client Id for the respective job | Yes | string |
+| customerId | query | Please provide the customer Id for the job | Yes | string |
+| type | query | Please provide the customer Id for the job | No | string |
+| status | query | Please provide the customer Id for the job | No | string |
+| parentJobId | query | Please provide the customer Id for the job | No | number |
+| createdBy | query | Please provide the customer Id for the job | No | number |
+| limit | query | Please provide the customer Id for the job | No | number |
+| phase | query | Please provide the customer Id for the job | No | string |
+| startDate | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+| endDate | query | Date string of the format 'YYYY-MM-DD' | No | dateTime |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get a single job
+
+Returns Job with JobId
+
+### HTTP Request 
+`GET /v1.0/jobs/{jobId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| jobId | path | Please provide the  job Id | Yes | number |
+| clientId | query | Please provide the respective client Id for the respective job | Yes | string |
+| customerId | query | Please provide the customer Id | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Create a job
+
+Create Jobs
+
+### HTTP Request 
+`POST /v1.0/jobs` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Edit a job
+
+Update Job with JobId
+
+### HTTP Request 
+`PUT /v1.0/jobs/{jobId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| jobId | path | Please provide the job Id | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Update a job's phase
+
+update job phase
+
+### HTTP Request 
+`PUT /v1.0/jobs/{jobId}/phase` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| jobId | path | Please provide the job Id | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Update a job's status
+
+Update job status
+
+### HTTP Request 
+`PUT /v1.0/jobs/{jobId}/status` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the  token | Yes | string |
+| jobId | path | Please provide the job Id | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Users
+
+## Get a single user
+
+Get User with UserId
+
+### HTTP Request 
+`GET /v1.0/users/{userId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| userId | path | User ID | Yes | number |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Get all clients a user has access to
+
+Get Clients with UserId
+
+### HTTP Request 
+`GET /v1.0/users/{userId}/clients` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| userId | path | User ID | Yes | number |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+## Update a user
+
+Update User with UserId
+
+### HTTP Request 
+`PUT /v1.0/users/{userId}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| token | header | Please provide the token | Yes | string |
+| userId | path | User ID | Yes | number |
+| body | body | Post Object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+# Health Check
+## Get L1 health status
+
+healthcheckUrls
+
+### HTTP Request 
+`GET /admin/status/marin-open-api-service/L1` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+
+## Get L2 health status
+
+healthcheckUrls
+
+### HTTP Request 
+`GET /admin/status/marin-open-api-service/L2` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | Success |
+| default | Error |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
