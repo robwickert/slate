@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Marin API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;http&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="http">HTTP</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -223,21 +221,177 @@
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#versioning" class="toc-h2 toc-link" data-title="Introduction">Versioning</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Kittens">Get All Kittens</a>
+                    <a href="#get-authentication-token" class="toc-h2 toc-link" data-title="Authentication">Get Authentication Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#clients" class="toc-h1 toc-link" data-title="Clients">Clients</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-clients" class="toc-h2 toc-link" data-title="Clients">Get All Clients</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Get a Specific Kitten</a>
+                    <a href="#get-a-single-client" class="toc-h2 toc-link" data-title="Clients">Get a single client</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Kittens">Delete a Specific Kitten</a>
+                    <a href="#get-all-users-for-a-client" class="toc-h2 toc-link" data-title="Clients">Get all users for a client</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-client" class="toc-h2 toc-link" data-title="Clients">Create a client</a>
+                  </li>
+                  <li>
+                    <a href="#edit-a-client" class="toc-h2 toc-link" data-title="Clients">Edit a client</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-client" class="toc-h2 toc-link" data-title="Clients">Delete a client</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#customers" class="toc-h1 toc-link" data-title="Customers">Customers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-customers" class="toc-h2 toc-link" data-title="Customers">Get all customers</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-customer" class="toc-h2 toc-link" data-title="Customers">Get a single customer</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-customer" class="toc-h2 toc-link" data-title="Customers">Create a customer</a>
+                  </li>
+                  <li>
+                    <a href="#edit-a-customer" class="toc-h2 toc-link" data-title="Customers">Edit a customer</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-customer" class="toc-h2 toc-link" data-title="Customers">Delete a customer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#publisher-accounts" class="toc-h1 toc-link" data-title="Publisher Accounts">Publisher Accounts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-publisher-accounts" class="toc-h2 toc-link" data-title="Publisher Accounts">Get all publisher accounts</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-publisher-account" class="toc-h2 toc-link" data-title="Publisher Accounts">Get a single publisher account</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#campaigns" class="toc-h1 toc-link" data-title="Campaigns">Campaigns</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-campaigns" class="toc-h2 toc-link" data-title="Campaigns">Get all campaigns</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-campaign" class="toc-h2 toc-link" data-title="Campaigns">Get a single campaign</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#groups" class="toc-h1 toc-link" data-title="Groups">Groups</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-groups" class="toc-h2 toc-link" data-title="Groups">Get all groups</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-group" class="toc-h2 toc-link" data-title="Groups">Get a single group</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#keywords" class="toc-h1 toc-link" data-title="Keywords">Keywords</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-keywords" class="toc-h2 toc-link" data-title="Keywords">Get all keywords</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-keyword" class="toc-h2 toc-link" data-title="Keywords">Get a single keyword</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#creatives" class="toc-h1 toc-link" data-title="Creatives">Creatives</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-creatives" class="toc-h2 toc-link" data-title="Creatives">Get all creatives</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-creative" class="toc-h2 toc-link" data-title="Creatives">Get a single creative</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-users" class="toc-h2 toc-link" data-title="Users">Get all users</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-user" class="toc-h2 toc-link" data-title="Users">Create a user</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-user" class="toc-h2 toc-link" data-title="Users">Delete a user</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#jobs" class="toc-h1 toc-link" data-title="Jobs">Jobs</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-jobs" class="toc-h2 toc-link" data-title="Jobs">Get all jobs</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-single-job" class="toc-h2 toc-link" data-title="Jobs">Get a single job</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-job" class="toc-h2 toc-link" data-title="Jobs">Create a job</a>
+                  </li>
+                  <li>
+                    <a href="#edit-a-job" class="toc-h2 toc-link" data-title="Jobs">Edit a job</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-job-39-s-phase" class="toc-h2 toc-link" data-title="Jobs">Update a job's phase</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-job-39-s-status" class="toc-h2 toc-link" data-title="Jobs">Update a job's status</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#users-2" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-single-user" class="toc-h2 toc-link" data-title="Users">Get a single user</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-clients-a-user-has-access-to" class="toc-h2 toc-link" data-title="Users">Get all clients a user has access to</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-user" class="toc-h2 toc-link" data-title="Users">Update a user</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#health-check" class="toc-h1 toc-link" data-title="Health Check">Health Check</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-l1-health-status" class="toc-h2 toc-link" data-title="Health Check">Get L1 health status</a>
+                  </li>
+                  <li>
+                    <a href="#get-l2-health-status" class="toc-h2 toc-link" data-title="Health Check">Get L2 health status</a>
                   </li>
               </ul>
           </li>
@@ -247,191 +401,2336 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/lavkumarv'>Documentation Powered by lav</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>The Marin API is a REST API that provides users the means to programmatically retrieve and update their Marin data. The document will provide you with everything you need to get started using the API.</p>
+<h2 id='versioning'>Versioning</h2>
+<p>The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one version is available:</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<table><thead>
+<tr>
+<th>Version</th>
+<th>Comments</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>v1.0</td>
+<td>Initial Version of the Marin API</td>
+</tr>
+</tbody></table>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>The version number is specified after the base URL:</p>
+
+<p><code>GET http://api.marinsoftware.com/v1.0/clients</code></p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the auth endpoint with your username and password that you will use to access the API.</p>
+<h2 id='get-authentication-token'>Get Authentication Token</h2>
+<p>Authenticate the users and returns a token</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>POST /v1.0/auth</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>200</td>
+<td>Success</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>default</td>
+<td>Error</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<h1 id='clients'>Clients</h1><h2 id='get-all-clients'>Get All Clients</h2>
+<p>Returns Clients</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET /v1.0/clients</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td>Please provide the Id</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Please provide the  status</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>query</td>
+<td>Please provide the  currency</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>legacyId</td>
+<td>query</td>
+<td>Please provide the  legacyId</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>Please provide the  name</td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='get-a-single-client'>Get a single client</h2>
+<p>Returns client with client ID</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}</code> </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><strong>Parameters</strong></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-users-for-a-client'>Get all users for a client</h2>
+<p>Get Users under a client</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/users</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-client'>Create a client</h2>
+<p>Creates Client</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /v1.0/clients</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='edit-a-client'>Edit a client</h2>
+<p>Update client with clientId</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT /v1.0/clients/{clientId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Please provide the  clientId to be updated</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-client'>Delete a client</h2>
+<p>Delete Client with clientId</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE /v1.0/clients/{clientId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the Id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Please provide the  clientId to be updated</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='customers'>Customers</h1><h2 id='get-all-customers'>Get all customers</h2>
+<p>Returns Customers</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /v1.0/customers</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>query</td>
+<td>Please provide the Id</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Please provide the  status</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>legacyId</td>
+<td>query</td>
+<td>Please provide the  legacyId</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>name</td>
+<td>query</td>
+<td>Please provide the  name</td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-customer'>Get a single customer</h2>
+<p>Returns Customer with CustomerId</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET /v1.0/customers/{customerId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>path</td>
+<td>Customer ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-customer'>Create a customer</h2>
+<p>Create Customer</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /v1.0/customers</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='edit-a-customer'>Edit a customer</h2>
+<p>Update customer</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>PUT /v1.0/customers/{customerId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>path</td>
+<td>Please provide the  customerId to be updated</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-customer'>Delete a customer</h2>
+<p>Deletes customers</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>DELETE /v1.0/customers/{customerId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>path</td>
+<td>Please provide the customer Id to be deleted</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='publisher-accounts'>Publisher Accounts</h1><h2 id='get-all-publisher-accounts'>Get all publisher accounts</h2>
+<p>Returns all Publisher Accounts under a Client</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/publisherAccounts</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-publisher-account'>Get a single publisher account</h2>
+<p>Returns Publisher Account under a Client</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/publisherAccounts/{pubAccountId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>pubAccountId</td>
+<td>path</td>
+<td>Publisher Accounts ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='campaigns'>Campaigns</h1><h2 id='get-all-campaigns'>Get all campaigns</h2>
+<p>Returns all Campaigns under a Client</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/campaigns</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-campaign'>Get a single campaign</h2>
+<p>Returns a Campaign under a Client</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/campaigns/{campaignId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>campaignId</td>
+<td>path</td>
+<td>Campaign ID</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='groups'>Groups</h1><h2 id='get-all-groups'>Get all groups</h2>
+<p>Returns all Groups under a Client</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/groups</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-group'>Get a single group</h2>
+<p>Returns a Group under a Client</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/groups/{groupId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>groupId</td>
+<td>path</td>
+<td>Group ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='keywords'>Keywords</h1><h2 id='get-all-keywords'>Get all keywords</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  <span class="s2">"http://api.marinsoftware.com/v1.0/clients/1808782/keywords"</span>
+  -H <span class="s1">'token: st_cfc8909710f0d020f95dcec821fad453a248ebc7a7f9438f'</span>
+</code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1.0/clients/1808782/keywords</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.marinsoftware.com</span>
+<span class="na">token</span><span class="p">:</span> <span class="s">st_cfc8909710f0d020f95dcec821fad453a248ebc7a7f9438f</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"publisher_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MSN"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"min_cpc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"impressions"</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BROAD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"max_cpc"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pub_cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">23040000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pca"</span><span class="p">:</span><span class="w"> </span><span class="mi">1591619</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Powpow-AU-[Looker]-{Dates}-Year"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pub_clicks"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pca_alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Powpow-Bing-SEM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="mi">4779468</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client"</span><span class="p">:</span><span class="w"> </span><span class="mi">1808782</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="mi">10387398</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"keyword_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+cruises +2017"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recommended_bid"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="mi">27052373</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="mi">1904153</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>Returns all Keywords under Client</p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/keywords</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
 </tr>
 </tbody></table>
+<h2 id='get-a-single-keyword'>Get a single keyword</h2>
+<p>Returns a Keyword under a Client</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/keywords/{keywordId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>keywordId</td>
+<td>path</td>
+<td>Keyword ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='creatives'>Creatives</h1><h2 id='get-all-creatives'>Get all creatives</h2>
+<p>Returns all Creatives under a Client</p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/creatives</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-creative'>Get a single creative</h2>
+<p>Returns a Creative under a Client</p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET /v1.0/clients/{clientId}/creatives/{creativeId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>path</td>
+<td>Client ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>creativeId</td>
+<td>path</td>
+<td>Creative ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>limit docs</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>query</td>
+<td>starting value</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>query</td>
+<td>comma seperated field names which needs to be shown</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>to</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='users'>Users</h1><h2 id='get-all-users'>Get all users</h2>
+<p>Returns Users under a Client</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>GET /v1.0/users</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>query</td>
+<td>Please provide the respective client Id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-user'>Create a user</h2>
+<p>Create Users</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>POST /v1.0/users</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>query</td>
+<td>Please provide the customer Id for authorization</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-user'>Delete a user</h2>
+<p>Delete Users</p>
+<h3 id='http-request-25'>HTTP Request</h3>
+<p><code>DELETE /v1.0/users</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='jobs'>Jobs</h1><h2 id='get-all-jobs'>Get all jobs</h2>
+<p>Returns jobs</p>
+<h3 id='http-request-26'>HTTP Request</h3>
+<p><code>GET /v1.0/jobs</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>query</td>
+<td>Please provide the respective client Id for the respective job</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>type</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>parentJobId</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>number</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>number</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>number</td>
+</tr>
+<tr>
+<td>phase</td>
+<td>query</td>
+<td>Please provide the customer Id for the job</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>query</td>
+<td>Date string of the format &#39;YYYY-MM-DD&#39;</td>
+<td>No</td>
+<td>dateTime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-single-job'>Get a single job</h2>
+<p>Returns Job with JobId</p>
+<h3 id='http-request-27'>HTTP Request</h3>
+<p><code>GET /v1.0/jobs/{jobId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>jobId</td>
+<td>path</td>
+<td>Please provide the  job Id</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>query</td>
+<td>Please provide the respective client Id for the respective job</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>query</td>
+<td>Please provide the customer Id</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-job'>Create a job</h2>
+<p>Create Jobs</p>
+<h3 id='http-request-28'>HTTP Request</h3>
+<p><code>POST /v1.0/jobs</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='edit-a-job'>Edit a job</h2>
+<p>Update Job with JobId</p>
+<h3 id='http-request-29'>HTTP Request</h3>
+<p><code>PUT /v1.0/jobs/{jobId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>jobId</td>
+<td>path</td>
+<td>Please provide the job Id</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-job-39-s-phase'>Update a job&#39;s phase</h2>
+<p>update job phase</p>
+<h3 id='http-request-30'>HTTP Request</h3>
+<p><code>PUT /v1.0/jobs/{jobId}/phase</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>jobId</td>
+<td>path</td>
+<td>Please provide the job Id</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-job-39-s-status'>Update a job&#39;s status</h2>
+<p>Update job status</p>
+<h3 id='http-request-31'>HTTP Request</h3>
+<p><code>PUT /v1.0/jobs/{jobId}/status</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the  token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>jobId</td>
+<td>path</td>
+<td>Please provide the job Id</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='users-2'>Users</h1><h2 id='get-a-single-user'>Get a single user</h2>
+<p>Get User with UserId</p>
+<h3 id='http-request-32'>HTTP Request</h3>
+<p><code>GET /v1.0/users/{userId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>path</td>
+<td>User ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-clients-a-user-has-access-to'>Get all clients a user has access to</h2>
+<p>Get Clients with UserId</p>
+<h3 id='http-request-33'>HTTP Request</h3>
+<p><code>GET /v1.0/users/{userId}/clients</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>path</td>
+<td>User ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-user'>Update a user</h2>
+<p>Update User with UserId</p>
+<h3 id='http-request-34'>HTTP Request</h3>
+<p><code>PUT /v1.0/users/{userId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>header</td>
+<td>Please provide the token</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>path</td>
+<td>User ID</td>
+<td>Yes</td>
+<td>number</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Post Object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h1 id='health-check'>Health Check</h1><h2 id='get-l1-health-status'>Get L1 health status</h2>
+<p>healthcheckUrls</p>
+<h3 id='http-request-35'>HTTP Request</h3>
+<p><code>GET /admin/status/marin-open-api-service/L1</code> </p>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+<h2 id='get-l2-health-status'>Get L2 health status</h2>
+<p>healthcheckUrls</p>
+<h3 id='http-request-36'>HTTP Request</h3>
+<p><code>GET /admin/status/marin-open-api-service/L2</code> </p>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>default</td>
+<td>Error</td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='errors'>Errors</h1>
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
 
@@ -445,35 +2744,35 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request sucks</td>
+<td>Bad Request -- Your request sucks.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong</td>
+<td>Unauthorized -- Your API key is wrong.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only</td>
+<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found</td>
+<td>Not Found -- The specified kitten could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers</td>
+<td>Gone -- The kitten requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>418</td>
-<td>I&#39;m a teapot</td>
+<td>I&#39;m a teapot.</td>
 </tr>
 <tr>
 <td>429</td>
@@ -492,10 +2791,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="http">HTTP</a>
           </div>
       </div>
     </div>
