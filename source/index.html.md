@@ -106,13 +106,6 @@ Get an access token to access the API.
 | ---- | ---------- | ----------- | -------- | ---- |
 | body | body | json object of the form: `{ "username": "myUsername", "password": "mypassword"}` | Yes | string |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
 
 ## Using the access token
 
@@ -381,13 +374,6 @@ Get all your customers' details.
 | legacyId | query | Filter on customer's legacy (Search 1.0) ID | No | string |
 | name | query | Filter on the customer's full name | No | string |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
 ## Get a single customer
 
 ```shell
@@ -446,13 +432,6 @@ Get an individual customer's details given its ID.
 | ---- | ---------- | ----------- | -------- | ---- |
 | token | header | Authorization token| Yes | string |
 | customerId | path | The customer ID | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 
 # Clients
@@ -558,14 +537,6 @@ Get all your Marin client accounts.
 | legacyId | query | Filter on the client's legacy (Search 1.0) ID | No | string |
 | name | query | Filter on the client's full name | No | string |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
-
 ## Get a single client
 
 ```shell
@@ -659,13 +630,6 @@ Get an individual Marin client account given its ID.
 | ---- | ---------- | ----------- | -------- | ---- |
 | token | header | Authorization token | Yes | string |
 | clientId | path | The client ID | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Get all clients for a user
 
@@ -761,13 +725,6 @@ Get all clients that a particular user has access to.
 | token | header | Authorization token | Yes | string |
 | userId | path | The user ID | Yes | number |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
 # Users
 
 Marin app users.
@@ -857,14 +814,6 @@ Gets all users under a particular client.
 | token | header | Authorization token | Yes | string |
 | clientId | query | The client ID | Yes | string |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
-
 ## Get a single user
 
 ```shell
@@ -950,13 +899,6 @@ Get an individual user's details given its ID.
 | token | header | Authorization token | Yes | string |
 | userId | path | The user ID | Yes | number |
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
 
 # Publisher Accounts
 
@@ -1029,13 +971,6 @@ Get a list of publisher accounts for a client and any associated cost/conversion
 
 In addition you can use any valid [publisher account field](#publisher-account-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
-
 ## Get a single publisher account
 
 ```shell
@@ -1092,12 +1027,6 @@ Get an individual publisher account given it's ID and any associated cost/conver
 
 In addition you can use any valid [publisher account field](#publisher-account-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Publisher account fields
 
@@ -1245,12 +1174,6 @@ Get a list of campaigns for a client and any associated cost/conversion metrics.
 
 In addition you can use any valid [campaign field](#campaign-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Get a single campaign
 
@@ -1308,12 +1231,6 @@ Get an individual campaign given it's ID and any associated cost/conversion metr
 
 In addition you can use any valid [campaign field](#campaign-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter.  
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Campaign fields
 
@@ -1507,12 +1424,6 @@ Get a list of groups for a client and any associated cost/conversion metrics.
 
 In addition you can use any valid [group field](#group-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Get a single group
 
@@ -1591,12 +1502,6 @@ Get an individual group given it's ID and any associated cost/conversion metrics
 
 In addition you can use any valid [group field](#group-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Group fields
 
@@ -1829,12 +1734,6 @@ Get a list of keywords for a client and any associated cost/conversion metrics.
 
 In addition you can use any valid [keyword field](#keyword-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Get a single keyword
 
@@ -1904,12 +1803,6 @@ Get an individual keyword given it's ID and any associated cost/conversion metri
 
 In addition you can use any valid [keyword field](#keyword-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Keyword fields
 
@@ -2126,12 +2019,6 @@ Get a list of creatives for a client and any associated cost/conversion metrics.
 
 In addition you can use any valid [creative field](#creative-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Get a single creative
 
@@ -2201,12 +2088,6 @@ Get an individual creative given it's ID and any associated cost/conversion metr
 
 In addition you can use any valid [creative field](#creative-fields) to filter your request using equality conditions. Please see the [filters](#filters) section for more info on how to filter. 
 
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | Success |
-| default | Error |
 
 ## Creative fields
 
