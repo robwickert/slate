@@ -7,8 +7,7 @@ language_tabs:
    - http: HTTP
 
 toc_footers: 
-   - <a href='#'>Sign Up for a Developer Key</a> 
-   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
+   - Copyright <a href="http://www.marinsoftware.com">Marin Software</a>
 
 includes: 
    - errors 
@@ -19,29 +18,23 @@ search: true
 
 # Introduction 
 
-The Marin API is a REST API that provides users the means to programmatically retrieve and update their Marin data. The document will provide you with everything you need to get started using the API.
+The Marin API is the primary way for your apps to retrieve your data in Marin. It is currently a reporting-only REST API although write capabilities will be added in due course. The document will provide you with everything you need to get started using the API.
 
-## Where it's Located
+The Marin API is currently an <b>alpha</b> product and is continually in development. As an alpha prodcut there are some things to consider:
 
-The Marin API's base URL is located at the following location:
+* The Marin API not yet suitable for building business critical applications.
+* New endpoints or parmeters on current endpoints may be introduced without a change in version. Any new endpoints or parameters will appear in this documentation.
+* API uptime is not guaranteed and may be taken offline at any time.
+* JSON Response structure may differ between some endpoints (e.g. some endpoints contain metadata fields about the speed of the response, others don't)
 
-`https://api.marinsoftware.com`
+This does not mean you should not use the API. Using the API and feeding back to us your experiences will help us build a better API.
 
-## Versioning
-
-The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one version is available:
-
-| Version | Comments |
-| ------- | -------- |
-| v1.0 | Initial Version of the Marin API |
-
-The version number is specified after the base URL:
-
-`GET https://api.marinsoftware.com/v1.0/clients`
 
 ## How it's Structured
 
-Requests are structured using the following:
+Reading data from the API is accomplished by making HTTP GET requests to the various endpoints.
+
+Requests are made using the following structure:
 
 `GET {base-api-url}/v{version}/{endpoint}`
 
@@ -52,17 +45,37 @@ For instance, to get a list of all clients you have access to:
 Please see the API Reference section for a full list of available endpoints.
 
 
+## Where it's Located
+
+The Marin API's base URL is located at the following location:
+
+`https://api.marinsoftware.com`
+
+Only HTTPS requests are supported. Plain HTTP will fail.
+
+## Versioning
+
+The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one alpha version is available:
+
+| Version | Comments |
+| ------- | -------- |
+| v1.0 | Initial Alpha Version of the Marin API |
+
+The version number is specified after the base URL:
+
+`GET https://api.marinsoftware.com/v1.0/clients`
+
 # Authentication 
 
 
-All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the [auth](#auth) endpoint with your username and password that you will use to access the API.
+All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the [auth](#getting-the-access-token) endpoint with your username and password that you will use to access the API. Please see the [auth](#getting-the-access-token) endpoint documentation for examples on how to get your access token.
 
-This token will need to be supplied in the header for all requests to the API.
+This token will need to be supplied in the header for all requests to the API. Please see [Using the Access Token](#using-the-access-token) for examples on how to include the token with your requests.
 
 Access token are currently valid for 48 hours. If your access token expires you will need to request a new one.
 
 
-## Get access token
+## Getting the access token
 
 ```shell
 curl -X POST \
@@ -95,7 +108,12 @@ Content-Type: application/json
 }
 ```
 
-Get an access token to access the API.
+Use the **auth** endpoint to get an access token for the API. 
+
+* You must use a valid username/password that has access to your accounts. 
+* The user must be set as an FTP-only user in the Marin App. 
+
+You will have access to the same client accounts that you have when you login to the app.
 
 ### HTTP Request 
 `POST /v1.0/auth` 
@@ -121,7 +139,9 @@ Host: api.marinsoftware.com
 token: st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd
 ```
 
-Once you have your access token you will need to include it in the HTTP header for any requests. Please see an example on the right for including the token in your request.
+Once you have your access token you will need to include it in the HTTP header for all your requests. Please see an example on the right for including the token in your request. 
+
+Access token are currently valid for 48 hours. If your access token expires you will need to request a new one.
 
 # Using the Marin API
 
@@ -169,7 +189,16 @@ token: st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd
 }
 ```
 
-To retrieve data for an endpoint, simply send a GET request, using any additional parameters that are supported by the endpoint. 
+To retrieve data for an endpoint, simply send a GET request, using any additional parameters that are supported by the endpoint. Please see the documentation for your endpoint to see which parameters are supported.
+
+Many endpoints ([publisherAccounts](#publisher-accounts), [campaigns](#campaigns), [groups](#groups), [keywords](#keywords), [creatives](#creatives)) support the following functions:
+
+* [Fitlering](#filtering)
+* [Field Selection](#field-selection)
+* [Sorting](#sorting)
+* [Paging](#paging)
+
+
 
 ## Field selection
 
@@ -190,7 +219,7 @@ Select which fields you want using the `fields` parameter. If you don't select a
 
 Each publisher object endpoint lists the fields available for selection. The `fields` parameter is available on all the publisher object endpoints ([publisherAccounts](#publisher-accounts), [campaigns](#campaigns), [groups](#groups), [keywords](#keywords), [creatives](#creatives)).
 
-## Filters
+## Filtering
 
 ```shell
 curl -X GET \
@@ -1034,10 +1063,10 @@ Full list of attributes, metrics and date fields for publisher accounts:
 
 | Field                            | Field Type          | Data Type      | ID Suffix Required | 
 |----------------------------------|---------------------|----------------|--------------------| 
-| pca                              | Hierarchy Object ID | integer        | No                 | 
-| publisher                        | Hierarchy Object ID | integer        | No                 | 
-| client                           | Hierarchy Object ID | integer        | No                 | 
-| customer                         | Hierarchy Object ID | integer        | No                 | 
+| pca                              | Marin ID | integer        | No                 | 
+| publisher                        | Marin ID | integer        | No                 | 
+| client                           | Marin ID | integer        | No                 | 
+| customer                         | Marin ID | integer        | No                 | 
 | year                             | date                | integer        | No                 | 
 | month                            | date                | integer        | No                 | 
 | quarter                          | date                | integer        | No                 | 
@@ -1238,11 +1267,11 @@ Full list of attributes, metrics and date fields for campaigns:
 
 | Field                                    | Field Type          | Data Type      | ID Suffix Required | 
 |------------------------------------------|---------------------|----------------|--------------------| 
-| campaign                                 | Hierarchy Object ID | integer        | No                 | 
-| pca                                      | Hierarchy Object ID | integer        | No                 | 
-| publisher                                | Hierarchy Object ID | integer        | No                 | 
-| client                                   | Hierarchy Object ID | integer        | No                 | 
-| customer                                 | Hierarchy Object ID | integer        | No                 | 
+| campaign                                 | Marin ID | integer        | No                 | 
+| pca                                      | Marin ID | integer        | No                 | 
+| publisher                                | Marin ID | integer        | No                 | 
+| client                                   | Marin ID | integer        | No                 | 
+| customer                                 | Marin ID | integer        | No                 | 
 | year                                     | date                | integer        | No                 | 
 | month                                    | date                | integer        | No                 | 
 | quarter                                  | date                | integer        | No                 | 
@@ -1509,12 +1538,12 @@ Full list of attributes, metrics and date fields for groups:
 
 | Field                                    | Field Type          | Data Type      | ID Suffix Required | 
 |------------------------------------------|---------------------|----------------|--------------------| 
-| group                                    | Hierarchy Object ID | integer        | No                 | 
-| campaign                                 | Hierarchy Object ID | integer        | No                 | 
-| pca                                      | Hierarchy Object ID | integer        | No                 | 
-| publisher                                | Hierarchy Object ID | integer        | No                 | 
-| client                                   | Hierarchy Object ID | integer        | No                 | 
-| customer                                 | Hierarchy Object ID | integer        | No                 | 
+| group                                    | Marin ID | integer        | No                 | 
+| campaign                                 | Marin ID | integer        | No                 | 
+| pca                                      | Marin ID | integer        | No                 | 
+| publisher                                | Marin ID | integer        | No                 | 
+| client                                   | Marin ID | integer        | No                 | 
+| customer                                 | Marin ID | integer        | No                 | 
 | year                                     | date                | integer        | No                 | 
 | month                                    | date                | integer        | No                 | 
 | quarter                                  | date                | integer        | No                 | 
@@ -1810,13 +1839,13 @@ Full list of attributes, metrics and date fields for keywords:
 
 | Field                                | Field Type          | Data Type      | ID Suffix Required | 
 |--------------------------------------|---------------------|----------------|--------------------| 
-| keyword                              | Hierarchy Object ID | integer        | No                 | 
-| group                                | Hierarchy Object ID | integer        | No                 | 
-| campaign                             | Hierarchy Object ID | integer        | No                 | 
-| pca                                  | Hierarchy Object ID | integer        | No                 | 
-| publisher                            | Hierarchy Object ID | integer        | No                 | 
-| client                               | Hierarchy Object ID | integer        | No                 | 
-| customer                             | Hierarchy Object ID | integer        | No                 | 
+| keyword                              | Marin ID | integer        | No                 | 
+| group                                | Marin ID | integer        | No                 | 
+| campaign                             | Marin ID | integer        | No                 | 
+| pca                                  | Marin ID | integer        | No                 | 
+| publisher                            | Marin ID | integer        | No                 | 
+| client                               | Marin ID | integer        | No                 | 
+| customer                             | Marin ID | integer        | No                 | 
 | year                                 | date                | integer        | No                 | 
 | month                                | date                | integer        | No                 | 
 | quarter                              | date                | integer        | No                 | 
@@ -2095,13 +2124,13 @@ Full list of attributes, metrics and date fields for keywords:
 
 | Field                                    | Field Type          | Data Type      | ID Suffix Required | 
 |------------------------------------------|---------------------|----------------|--------------------| 
-| creative                                 | Hierarchy Object ID | integer        | No                 | 
-| group                                    | Hierarchy Object ID | integer        | No                 | 
-| campaign                                 | Hierarchy Object ID | integer        | No                 | 
-| pca                                      | Hierarchy Object ID | integer        | No                 | 
-| publisher                                | Hierarchy Object ID | integer        | No                 | 
-| client                                   | Hierarchy Object ID | integer        | No                 | 
-| customer                                 | Hierarchy Object ID | integer        | No                 | 
+| creative                                 | Marin ID | integer        | No                 | 
+| group                                    | Marin ID | integer        | No                 | 
+| campaign                                 | Marin ID | integer        | No                 | 
+| pca                                      | Marin ID | integer        | No                 | 
+| publisher                                | Marin ID | integer        | No                 | 
+| client                                   | Marin ID | integer        | No                 | 
+| customer                                 | Marin ID | integer        | No                 | 
 | year                                     | date                | integer        | No                 | 
 | month                                    | date                | integer        | No                 | 
 | quarter                                  | date                | integer        | No                 | 
