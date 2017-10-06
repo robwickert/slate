@@ -223,13 +223,13 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#how-it-39-s-structured" class="toc-h2 toc-link" data-title="Introduction">How it's Structured</a>
+                  </li>
+                  <li>
                     <a href="#where-it-39-s-located" class="toc-h2 toc-link" data-title="Introduction">Where it's Located</a>
                   </li>
                   <li>
                     <a href="#versioning" class="toc-h2 toc-link" data-title="Introduction">Versioning</a>
-                  </li>
-                  <li>
-                    <a href="#how-it-39-s-structured" class="toc-h2 toc-link" data-title="Introduction">How it's Structured</a>
                   </li>
               </ul>
           </li>
@@ -237,7 +237,7 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-access-token" class="toc-h2 toc-link" data-title="Authentication">Get access token</a>
+                    <a href="#getting-the-access-token" class="toc-h2 toc-link" data-title="Authentication">Getting the access token</a>
                   </li>
                   <li>
                     <a href="#using-the-access-token" class="toc-h2 toc-link" data-title="Authentication">Using the access token</a>
@@ -254,7 +254,7 @@
                     <a href="#field-selection" class="toc-h2 toc-link" data-title="Using the Marin API">Field selection</a>
                   </li>
                   <li>
-                    <a href="#filters" class="toc-h2 toc-link" data-title="Using the Marin API">Filters</a>
+                    <a href="#filtering" class="toc-h2 toc-link" data-title="Using the Marin API">Filtering</a>
                   </li>
                   <li>
                     <a href="#sorting" class="toc-h2 toc-link" data-title="Using the Marin API">Sorting</a>
@@ -378,21 +378,45 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lavkumarv'>Documentation Powered by lav</a></li>
+            <li>Copyright <a href="http://www.marinsoftware.com">Marin Software</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>The Marin API is a REST API that provides users the means to programmatically retrieve and update their Marin data. The document will provide you with everything you need to get started using the API.</p>
+<p>The Marin API is the primary way for your apps to retrieve your data in Marin. It is currently a reporting-only REST API although write capabilities will be added in due course. The document will provide you with everything you need to get started using the API.</p>
+
+<p>The Marin API is currently an <b>alpha</b> product and is continually in development. As an alpha prodcut there are some things to consider:</p>
+
+<ul>
+<li>The Marin API not yet suitable for building business critical applications.</li>
+<li>New endpoints or parmeters on current endpoints may be introduced without a change in version. Any new endpoints or parameters will appear in this documentation.</li>
+<li>API uptime is not guaranteed and may be taken offline at any time.</li>
+<li>JSON Response structure may differ between some endpoints (e.g. some endpoints contain metadata fields about the speed of the response, others don&#39;t)</li>
+</ul>
+
+<p>This does not mean you should not use the API. Using the API and feeding back to us your experiences will help us build a better API.</p>
+<h2 id='how-it-39-s-structured'>How it&#39;s Structured</h2>
+<p>Reading data from the API is accomplished by making HTTP GET requests to the various endpoints.</p>
+
+<p>Requests are made using the following structure:</p>
+
+<p><code>GET {base-api-url}/v{version}/{endpoint}</code></p>
+
+<p>For instance, to get a list of all clients you have access to:</p>
+
+<p><code>GET https://api.marinsoftware.com/v1.0/clients</code></p>
+
+<p>Please see the API Reference section for a full list of available endpoints.</p>
 <h2 id='where-it-39-s-located'>Where it&#39;s Located</h2>
 <p>The Marin API&#39;s base URL is located at the following location:</p>
 
 <p><code>https://api.marinsoftware.com</code></p>
+
+<p>Only HTTPS requests are supported. Plain HTTP will fail.</p>
 <h2 id='versioning'>Versioning</h2>
-<p>The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one version is available:</p>
+<p>The Marin API is versioned. This means there can be multiple versions available at any one time. Currently only one alpha version is available:</p>
 
 <table><thead>
 <tr>
@@ -402,30 +426,20 @@
 </thead><tbody>
 <tr>
 <td>v1.0</td>
-<td>Initial Version of the Marin API</td>
+<td>Initial Alpha Version of the Marin API</td>
 </tr>
 </tbody></table>
 
 <p>The version number is specified after the base URL:</p>
 
 <p><code>GET https://api.marinsoftware.com/v1.0/clients</code></p>
-<h2 id='how-it-39-s-structured'>How it&#39;s Structured</h2>
-<p>Requests are structured using the following:</p>
-
-<p><code>GET {base-api-url}/v{version}/{endpoint}</code></p>
-
-<p>For instance, to get a list of all clients you have access to:</p>
-
-<p><code>GET https://api.marinsoftware.com/v1.0/clients</code></p>
-
-<p>Please see the API Reference section for a full list of available endpoints.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the <a href="#auth">auth</a> endpoint with your username and password that you will use to access the API.</p>
+<p>All endpoints require an access token in order to make requests. To get an access token you will need to make a request to the <a href="#getting-the-access-token">auth</a> endpoint with your username and password that you will use to access the API. Please see the <a href="#getting-the-access-token">auth</a> endpoint documentation for examples on how to get your access token.</p>
 
-<p>This token will need to be supplied in the header for all requests to the API.</p>
+<p>This token will need to be supplied in the header for all requests to the API. Please see <a href="#using-the-access-token">Using the Access Token</a> for examples on how to include the token with your requests.</p>
 
 <p>Access token are currently valid for 48 hours. If your access token expires you will need to request a new one.</p>
-<h2 id='get-access-token'>Get access token</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+<h2 id='getting-the-access-token'>Getting the access token</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   https://api.marinsoftware.com/v1.0/auth <span class="se">\</span>
   -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -450,7 +464,14 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get an access token to access the API.</p>
+<p>Use the <strong>auth</strong> endpoint to get an access token for the API. </p>
+
+<ul>
+<li>You must use a valid username/password that has access to your accounts. </li>
+<li>The user must be set as an FTP-only user in the Marin App. </li>
+</ul>
+
+<p>You will have access to the same client accounts that you have when you login to the app.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /v1.0/auth</code> </p>
 
@@ -480,7 +501,9 @@
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.marinsoftware.com</span>
 <span class="na">token</span><span class="p">:</span> <span class="s">st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd</span>
 </code></pre>
-<p>Once you have your access token you will need to include it in the HTTP header for any requests. Please see an example on the right for including the token in your request.</p>
+<p>Once you have your access token you will need to include it in the HTTP header for all your requests. Please see an example on the right for including the token in your request. </p>
+
+<p>Access token are currently valid for 48 hours. If your access token expires you will need to request a new one.</p>
 <h1 id='using-the-marin-api'>Using the Marin API</h1><h2 id='reading-data-get'>Reading data (GET)</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://api.marinsoftware.com/v1.0/clients?status=ACTIVE'</span> <span class="se">\</span>
   -H <span class="s1">'token: st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd'</span>
@@ -517,7 +540,16 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>To retrieve data for an endpoint, simply send a GET request, using any additional parameters that are supported by the endpoint. </p>
+<p>To retrieve data for an endpoint, simply send a GET request, using any additional parameters that are supported by the endpoint. Please see the documentation for your endpoint to see which parameters are supported.</p>
+
+<p>Many endpoints (<a href="#publisher-accounts">publisherAccounts</a>, <a href="#campaigns">campaigns</a>, <a href="#groups">groups</a>, <a href="#keywords">keywords</a>, <a href="#creatives">creatives</a>) support the following functions:</p>
+
+<ul>
+<li><a href="#filtering">Fitlering</a></li>
+<li><a href="#field-selection">Field Selection</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#paging">Paging</a></li>
+</ul>
 <h2 id='field-selection'>Field selection</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://prod-vip-marin-open-api-service-lv:3000/v1.0/clients/1808782/keywords?fields=keyword,keyword_name,type,pub_clicks,date'</span> <span class="se">\</span>
   -H <span class="s1">'token: st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd'</span>
@@ -529,7 +561,7 @@
 <p>Select which fields you want using the <code>fields</code> parameter. If you don&#39;t select any fields you will get a small set of default fields. </p>
 
 <p>Each publisher object endpoint lists the fields available for selection. The <code>fields</code> parameter is available on all the publisher object endpoints (<a href="#publisher-accounts">publisherAccounts</a>, <a href="#campaigns">campaigns</a>, <a href="#groups">groups</a>, <a href="#keywords">keywords</a>, <a href="#creatives">creatives</a>).</p>
-<h2 id='filters'>Filters</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+<h2 id='filtering'>Filtering</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
   <span class="s1">'https://api.marinsoftware.com/clients/1808782/keywords?campaign_name=Brand&amp;status=ACTIVE'</span> <span class="se">\</span>
   -H <span class="s1">'token: st_466e53e5224fb6b54efa3bda8716fe498ebb41fa65be3dbd'</span>
 </code></pre><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1.0/clients/1808782/keywords?campaign_name=Brand&amp;amp;status=ACTIVE</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -1537,25 +1569,25 @@
 </thead><tbody>
 <tr>
 <td>pca</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>publisher</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>client</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>customer</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
@@ -2169,31 +2201,31 @@
 </thead><tbody>
 <tr>
 <td>campaign</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>pca</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>publisher</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>client</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>customer</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
@@ -3053,37 +3085,37 @@
 </thead><tbody>
 <tr>
 <td>group</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>campaign</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>pca</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>publisher</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>client</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>customer</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
@@ -4107,43 +4139,43 @@ fields=keyword,group,campaign,campaign_name,pca,pca_alias,publisher_name,client,
 </thead><tbody>
 <tr>
 <td>keyword</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>group</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>campaign</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>pca</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>publisher</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>client</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>customer</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
@@ -5070,43 +5102,43 @@ fields=date,creative,group,campaign,campaign_name,pca,publisher,client,customer,
 </thead><tbody>
 <tr>
 <td>creative</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>group</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>campaign</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>pca</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>publisher</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>client</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>customer</td>
-<td>Hierarchy Object ID</td>
+<td>Marin ID</td>
 <td>integer</td>
 <td>No</td>
 </tr>
@@ -6050,20 +6082,18 @@ fields=date,creative,group,campaign,campaign_name,pca,publisher,client,customer,
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='errors'>Errors</h1>
-<p>If your request fails you will recieve an error response which details the reason for the failure.</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_AUTH_TOKEN"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid auth token"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<p>The Marin API uses normal HTTP response codes to indicate success or failure.</p>
+
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>HTTP Status Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
 <tr>
 <td>400</td>
 <td>Bad Request</td>
@@ -6087,6 +6117,26 @@ fields=date,creative,group,campaign,campaign_name,pca,publisher,client,customer,
 <tr>
 <td>503</td>
 <td>Service Unavailable</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_AUTH_TOKEN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid auth token"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If your request fails you will recieve additional information about the nature of the failure in the <code>error</code> response field.</p>
+
+<table><thead>
+<tr>
+<th>Marin Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>INVALID_AUTH_TOKEN</td>
+<td>The access token provided in the request header is not valid</td>
 </tr>
 </tbody></table>
 
